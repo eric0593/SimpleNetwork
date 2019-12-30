@@ -44,7 +44,12 @@ void* TCPServer::Task(void *arg)
 		usleep(600);
         }
 	if(desc != NULL)
-		free(desc);
+    {   
+        cout <<"Message size "<<Message.size()<<endl;
+        //if we erase desc from Message, the send_client will crash.
+		//free(desc);
+        //desc= NULL;
+    }
 	cerr << "exit thread: " << this_thread::get_id() << endl;
 	pthread_exit(NULL);
 	
